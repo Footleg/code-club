@@ -53,54 +53,56 @@ class maze:
             visited.append(row)
         
         #Start path with specified start cell
-        path = [[startCol-1,startRow-1]]
+        path = [[startCol-1,self.rows-startRow]]
         
-        #Set active cell to last cell in path and mark it as visited
-        activeCell = path[len(path)-1]
-        visited[activeCell[1]][activeCell[0]] = True
-        
-        #Set random order to select walls to test
-        order = [0]
-        for i in range(1,4):
-            pos = random.randint(0,i)
-            order.insert(pos,i)
-                
-        #Check neighbouring cells in random order to find an unvisited neighbour
-        nextCell = -1
-        for i in range(4):
-            row = activeCell[1]
-            col = activeCell[0]
-            #Get position of neighbour to test
-            if order[i] == 0:
-                row -=1
-            elif order[i] == 1:
-                col +=1
-            elif order[i] == 2:
-                row +=1
+        #Process cells until path is empty (meaning whole maze is generated)
+        while len(path) > 0:
+            #Set active cell to last cell in path and mark it as visited
+            activeCell = path[len(path)-1]
+            visited[activeCell[1]][activeCell[0]] = True
+            
+            #Set random order to select walls to test
+            order = [0]
+            for i in range(1,4):
+                pos = random.randint(0,i)
+                order.insert(pos,i)
+                    
+            #Check neighbouring cells in random order to find an unvisited neighbour
+            nextCell = -1
+            for i in range(4):
+                row = activeCell[1]
+                col = activeCell[0]
+                #Get position of neighbour to test
+                if order[i] == 0:
+                    row -=1
+                elif order[i] == 1:
+                    col +=1
+                elif order[i] == 2:
+                    row +=1
+                else:
+                    col -=1
+                    
+                #Check neighbour is in bounds of grid and not visited
+                if (0 <= row < self.rows) and (0 <= col < self.cols):
+                    if visited[row][col] == False:
+                        nextCell = order[i]
+                        break
+            
+            if nextCell >= 0:
+                #Remove wall
+                if nextCell == 0:
+                    self.cells[row][col][self.BOTTOM] = False
+                elif nextCell == 1:
+                    self.cells[activeCell[1]][activeCell[0]][self.RIGHT] = False
+                elif nextCell == 2:
+                    self.cells[activeCell[1]][activeCell[0]][self.BOTTOM] = False
+                else:
+                    self.cells[row][col][self.RIGHT] = False
+                #Add next cell to end of the path
+                path.append([col,row])
             else:
-                col -=1
-                
-            #Check neighbour is in bounds of grid and not visited
-            if (0 <= row < self.rows) and (0 <= col <= self.cols):
-                if visited[row][col] == False:
-                    nextCell = order[i]
-                    break
-        
-        if nextCell >= 0:
-            #Remove wall
-            if nextCell == 0:
-                self.cells[row][col][self.BOTTOM] = False
-            elif nextCell == 1:
-                self.cells[activeCell[1]][activeCell[0]][self.RIGHT] = False
-            elif nextCell == 2:
-                self.cells[activeCell[1]][activeCell[0]][self.BOTTOM] = False
-            else:
-                self.cells[row][col][self.RIGHT] = False
-            #Add next cell to end of the path
-            path.append([col,row])
-        else:
-            #Dead end reached, so backtrack down path
-            path.remove[len(path)-1]
+                #Dead end reached, so backtrack down path
+                path.pop()
             
 
     def print(self):
@@ -125,6 +127,6 @@ class maze:
             print(row)
 
 
-mz = maze(3,3)
-mz.generate(2,2)
+mz = maze(15,10)
+mz.generate(8,5)
 mz.print()
