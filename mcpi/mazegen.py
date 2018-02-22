@@ -9,6 +9,12 @@ class maze:
         all the information to define the grid. In this implementation, the right and bottom
         wall is stored. In order to generate the maze we also need to track whether a cell
         has been visited or not.
+        
+        Design by Footleg (licensed under GNU GPLv3).
+        This code was inspired by the work of Adrian Antonana who has shared his maze generator
+        and solver Python project on github: https://github.com/mrpelotazo/maze.git
+        His blog post is an excellent overview of maze generation, solving and display:
+        https://thelinuxchronicles.blogspot.co.uk/2012/07/python-maze-generation-and-solution.html
     """
     
     #Constants to define positions of items in the cells array
