@@ -39,15 +39,16 @@ class maze:
     def generate(self,startCol,startRow):
         """ Create a maze using a depth first search algorithm.
             Starting from the specified start coordinates it randomly knocks down walls
-            between the active cell and one of the unvisited neighbouring cells. The cell
-            through the removed wall then becomes the active cell. The path traversed is stored
-            in a stack as the grid of cells is traversed. Each cell is flagged as visited as it
-            becomes the active cell. This process continues until there are no unvisited cells
-            neighbouring the active cell. Then the algorithm back tracks along the traversed path
-            looking for any neighbouring unvisited cells as it goes. Whenever an unvisited cell is
-            found then the path can extend again through that cell. This continues until there are no
-            remaining cells in the stored path (at which point every cell has been visited and the maze
-            is complete.
+            between the active cell and one of the unvisited neighbouring cells. The
+            cell  through the removed wall then becomes the active cell. The path
+            traversed is stored in a stack as the grid of cells is traversed. Each cell
+            is flagged as visited as it becomes the active cell. This process continues
+            until there are no unvisited cells neighbouring the active cell. Then the
+            algorithm back tracks along the traversed path looking for any neighbouring
+            unvisited cells as it goes. Whenever an unvisited cell is found then the
+            path can extend again through that cell. This continues until there are no
+            remaining cells in the path stack (at which point every cell has been
+            visited and the maze is complete).
         """
         
         #Start by creating a 2D array to track which cells have been visited
@@ -112,6 +113,7 @@ class maze:
             
 
     def print(self):
+        """ Prints to stdout an ascii representation of the maze """
         for r in range(-1,self.rows):
             if r == -1:
                 row = "."
@@ -133,6 +135,11 @@ class maze:
             print(row)
 
 
-mz = maze(15,10)
-mz.generate(8,5)
-mz.print()
+def main():
+    mz = maze(15,10)
+    mz.generate(8,5)
+    mz.print()
+
+    
+if __name__ == '__main__':
+    main()
