@@ -1,0 +1,73 @@
+# Welcome to Sonic Pi v3.0.1
+
+live_loop :l1 do
+  use_real_time
+  a = sync "/osc/play/choir"
+  sample :ambi_choir
+end
+
+live_loop :l2 do
+  use_real_time
+  a = sync "/osc/play/kick"
+  sample :drum_heavy_kick
+end
+
+live_loop :l3 do
+  use_real_time
+  a = sync "/osc/play/drop"
+  sample :bass_drop_c
+end
+
+live_loop :l4 do
+  use_real_time
+  a = sync "/osc/play/voxyhit"
+  sample :bass_voxy_hit_c
+end
+
+live_loop :l5 do
+  use_real_time
+  a = sync "/osc/play/scratch"
+  sample :vinyl_scratch
+end
+
+live_loop :l6 do
+  use_real_time
+  a = sync "/osc/play/rewind"
+  sample :vinyl_rewind
+end
+
+live_loop :l7 do
+  use_real_time
+  a = sync "/osc/play/snaredub"
+  sample :drum_snare_soft
+end
+
+live_loop :l8 do
+  use_real_time
+  a = sync "/osc/play/cymbal"
+  sample :drum_cymbal_open
+end
+
+live_loop :l9 do
+  use_real_time
+  a = sync "/osc/play/bong"
+  sample :elec_bong
+end
+
+live_loop :l10 do
+  use_real_time
+  a = sync "/osc/play/triangle"
+  sample :elec_triangle
+end
+
+live_loop :l11 do
+  use_real_time
+  a = sync "/osc/play/twang"
+  sample :elec_twang
+end
+
+live_loop :l12 do
+  use_real_time
+  a = sync "/osc/play/bell"
+  sample :perc_bell
+end

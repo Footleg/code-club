@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+
+# Copyright (c) 2018 Paul Fretwell
+# Author: @drfootleg
+
 import random
 
 
